@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, FlatList, TouchableOpacity} from 'react-native';
 import List from './components/List';
+import Header from './components/Header.js'
 
 const mediaArray = [
   {
@@ -34,9 +35,24 @@ const mediaArray = [
 
 const App = () => {
   return (
-    <List mediaArray={mediaArray}/>
+    <View style={styles.appContainer}>
+      <Header />
+      <List mediaArray={mediaArray}/>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  appContainer: {
+    marginTop: 5,
+    paddingTop: 10,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#f9c2ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default App;
 
