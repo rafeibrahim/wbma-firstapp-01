@@ -4,7 +4,7 @@ import ListItem from './ListItem';
 
 const List = (props) => {
     return (
-      <View style={{marginTop: 19}}>
+      <View style={{flex: 5}}>
         <FlatList
           data={props.mediaArray}
           renderItem={({item}) => {
