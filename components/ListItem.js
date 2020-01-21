@@ -1,22 +1,25 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
-const mediaURL = 'http://media.mw.metropolia.fi/wbma/uploads/'
+const mediaURL = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
 const ListItem = (props) => {
+  const fileData = props.item;
   return (
-     <TouchableOpacity>
-              <View style={styles.container}>
-                <Image
-                  style={styles.image}
-                  source={{uri: mediaURL + props.item.filename}}
-                />
-                <View style={styles.details}>
-                  <Text style={styles.title}>{props.item.title}</Text>
-                  <Text style={styles.description}>{props.item.description}</Text>
-                </View>
-              </View>
-      </TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => props.navigation.push('Single', {fileData: fileData})}
+    >
+      <View style={styles.container}>
+        <Image
+          style={styles.image}
+          source={{uri: mediaURL + props.item.filename}}
+        />
+        <View style={styles.details}>
+          <Text style={styles.title}>{props.item.title}</Text>
+          <Text style={styles.description}>{props.item.description}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 
