@@ -1,8 +1,7 @@
 // hooks.js
-import {useState, useEffect} from "react";
+import {useState, useEffect} from 'react';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
-
 
 const getAllMedia = () => {
   const [data, setData] = useState([]);
@@ -23,20 +22,20 @@ const getAllMedia = () => {
     } catch (e) {
       console.log('error', e.message);
     }
-  }
+  };
 
   useEffect(() => {
     fetchUrl();
   }, []);
   return [data, loading];
-}
+};
 
 
 const login = async (data) => {
   const fetchOptions = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   };
@@ -45,7 +44,7 @@ const login = async (data) => {
     const json = await response.json();
     return json;
   } catch (e) {
-    console.log('error', e.message)
+    console.log('error', e.message);
   }
 };
 
@@ -53,7 +52,7 @@ const register = async (data) => {
   const fetchOptions = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   };
@@ -63,7 +62,7 @@ const register = async (data) => {
     console.log('registerResponse', json);
     return json;
   } catch (e) {
-    console.log('error', e.message)
+    console.log('error', e.message);
   }
 };
 

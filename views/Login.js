@@ -7,7 +7,7 @@ import useSignUpForm from '../hooks/LoginHooks';
 
 const Login = (props) => {
   const [error, setError] = useState('');
-  //props is needed for navigation
+  // props is needed for navigation
   const {handleUsernameChange,
     handlePasswordChange,
     handleEmailChange,
@@ -15,7 +15,11 @@ const Login = (props) => {
     inputs} = useSignUpForm();
   const signInAsync = async () => {
     try {
-      const user = await login({username: inputs.username, password: inputs.password});
+      const user = await login(
+          {
+            username: inputs.username,
+            password: inputs.password,
+          });
       console.log('Login', user.token);
       await AsyncStorage.setItem('userToken', user.token);
       await AsyncStorage.setItem('user', JSON.stringify(user.user));
@@ -30,7 +34,7 @@ const Login = (props) => {
         username: inputs.username,
         password: inputs.password,
         email: inputs.email,
-        full_name: inputs.fullname
+        full_name: inputs.fullname,
       });
       console.log(result);
       if (result.error) {
@@ -62,7 +66,7 @@ const Login = (props) => {
             title='Sign in'
             onPress={
               () => {
-                signInAsync()
+                signInAsync();
               }
             }
           />
@@ -95,7 +99,7 @@ const Login = (props) => {
             title='Sign in'
             onPress={
               () => {
-                registerAsync()
+                registerAsync();
               }
             }
           />
@@ -115,8 +119,8 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   form: {
-    padding: 20
-  }
+    padding: 20,
+  },
 });
 
 // proptypes here
