@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
@@ -7,53 +8,59 @@ import Profile from '../views/Profile.js';
 import Single from '../views/Single.js'
 import Login from '../views/Login.js';
 import AuthLoading from '../views/AuthLoading.js';
+import {Icon} from 'native-base';
 
 const TabNavigator = createBottomTabNavigator(
-  {
-    Home: {
-      screen: Home,
-      navigationOptions: {
-        title: 'Home',
-      },
+    {
+      Home,
+      Profile,
     },
-    Profile: {
-      screen: Profile,
-      navigationOptions: {
-        title: 'Profile'
-      },
+    {
+      defaultNavigationOptions: ({navigation}) => ({
+        tabBarIcon: () => {
+          const {routeName} = navigation.state;
+          let iconName;
+          if (routeName === 'Home') {
+            iconName = 'home';
+          } else if (routeName === 'Profile') {
+            iconName = 'person';
+          }
+          // You can return any component that you like here!
+          return <Icon
+            name={iconName}
+            size={25}
+          />;
+        },
+      }),
     },
-  },
-  {
-    initialRouteName: 'Home',
-  },
 );
 
 const StackNavigator = createStackNavigator(
-  {
-    Home: {
-      screen: TabNavigator,
-      navigationOptions: {
-        headerMode: 'none',
+    {
+      Home: {
+        screen: TabNavigator,
+        navigationOptions: {
+          headerMode: 'none',
+        },
+      },
+      Single: {
+        screen: Single,
+      },
+      Logout: {
+        screen: Login,
       },
     },
-    Single: {
-      screen: Single,
-    },
-    Logout: {
-      screen: Login,
-    },
-  },
 );
 
 const Navigator = createSwitchNavigator(
-  {
-    AuthLoading: AuthLoading,
-    App: StackNavigator,
-    Auth: Login,
-  },
-  {
-    initialRouteName: 'AuthLoading',
-  }
+    {
+      AuthLoading: AuthLoading,
+      App: StackNavigator,
+      Auth: Login,
+    },
+    {
+      initialRouteName: 'AuthLoading',
+    },
 );
 
 const AppContainer = createAppContainer(Navigator);

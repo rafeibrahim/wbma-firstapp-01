@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Button, AsyncStorage} from 'react-native';
+import {AsyncStorage} from 'react-native';
+import {Container, Header, Content, Form, Item, Input, Button, Text, Title} from 'native-base';
 import PropTypes from 'prop-types';
 import {login, register} from '../hooks/APIHooks.js';
-import FormTextInput from '../components/FormTextInupt.js';
 import useSignUpForm from '../hooks/LoginHooks';
 
 const Login = (props) => {
@@ -47,81 +47,80 @@ const Login = (props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.form}>
-        <Text>Login</Text>
-        <View>
-          <FormTextInput
-            autoCapitalize='none'
-            placeholder='username'
-            handler={handleUsernameChange}
-          />
-          <FormTextInput
-            autoCapitalize='none'
-            placeholder='password'
-            secureTextEntry={true}
-            handler={handlePasswordChange}
-          />
+    <Container>
+      <Header />
+      <Content>
+        <Form>
+          <Title>
+            <Text style={{fontWeight: 'bold'}}>Login</Text>
+          </Title>
+          <Item>
+            <Input
+              placeholder='username'
+              autoCapitalize='none'
+              onChangeText={handleUsernameChange}/>
+          </Item>
+          <Item last>
+            <Input
+              placeholder='password'
+              autoCapitalize='none'
+              secureTextEntry={true}
+              onChangeText={handlePasswordChange} />
+          </Item>
           <Button
-            title='Sign in'
-            onPress={
-              () => {
-                signInAsync();
-              }
+            full
+            onPress={() => {
+              signInAsync();
             }
-          />
-        </View>
-      </View>
-      <View style={styles.form}>
-        <Text>Register</Text>
-        <View>
-          <FormTextInput
-            autoCapitalize='none'
-            placeholder='username'
-            onChangeText={handleUsernameChange}
-          />
-          <FormTextInput
-            autoCapitalize='none'
-            placeholder='email'
-            onChangeText={handleEmailChange}
-          />
-          <FormTextInput
-            autoCapitalize='none'
-            placeholder='fullname'
-            onChangeText={handleFullnameChange}
-          />
-          <FormTextInput
-            autoCapitalize='none'
-            placeholder='password'
-            onChangeText={handlePasswordChange}
-          />
+            }
+          >
+            <Text>Sign in!</Text>
+          </Button>
+        </Form>
+        <Form>
+          <Title>
+            <Text style={{fontWeight: 'bold'}}>Register</Text>
+          </Title>
+          <Item>
+            <Input
+              placeholder='username'
+              autoCapitalize='none'
+              onChangeText={handleUsernameChange}
+            />
+          </Item>
+          <Item>
+            <Input
+              placeholder='email'
+              autoCapitalize='none'
+              onChangeText={handleEmailChange}/>
+          </Item>
+          <Item>
+            <Input
+              placeholder='fullname'
+              autoCapitalize='none'
+              onChangeText={handleFullnameChange}/>
+          </Item>
+          <Item last>
+            <Input
+              placeholder='password'
+              autoCapitalize='none'
+              secureTextEntry={true}
+              onChangeText={handlePasswordChange} />
+          </Item>
           <Button
-            title='Sign in'
-            onPress={
-              () => {
-                registerAsync();
-              }
+            full
+            onPress={() => {
+              registerAsync();
             }
-          />
-          <Text>{error}</Text>
-        </View>
-      </View>
-    </View>
+            }
+          >
+            <Text>Register!</Text>
+          </Button>
+        </Form>
+      </Content>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 40,
-  },
-  form: {
-    padding: 20,
-  },
-});
 
 // proptypes here
 Login.propTypes = {
