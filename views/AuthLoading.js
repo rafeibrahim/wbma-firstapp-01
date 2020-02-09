@@ -10,7 +10,7 @@ const bootstrapAsync = async (props) => {
     // screen will be unmounted and thrown away.
     console.log('token', userToken);
     props.navigation.navigate(userToken ? 'App' : 'Auth');
-  }
+  };
   useEffect(() => {
     getToken();
   }, []);
