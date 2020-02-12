@@ -1,5 +1,6 @@
 // hooks.js
 import {useState, useEffect} from 'react';
+import {AsyncStorage} from 'react-native';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
@@ -87,4 +88,22 @@ const usernameAvailable = async (username) => {
   }
 };
 
-export {getAllMedia, login, register, getAvatar, usernameAvailable};
+const getUser = async (userId) => {
+  try {
+    const token = await AsyncStorage.getItem('userToken');
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token,
+      },
+    };
+    const response = await fetch(apiUrl + 'users/' + userId, fetchOptions);
+    const json = await response.json();
+    return json;
+  } catch (e) {
+    console.log('error', e.message);
+  }
+};
+
+export {getAllMedia, login, register, getAvatar, usernameAvailable, getUser};
