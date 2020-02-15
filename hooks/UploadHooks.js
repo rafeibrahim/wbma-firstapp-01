@@ -29,7 +29,7 @@ const constraints = {
 const useUploadForm = (props) => {
   const [inputs, setInputs] = useState({});
   const [errors, setErrors] = useState({});
-  const [media, setMedia] = useContext(MediaContext);
+  const {media, setMedia} = useContext(MediaContext);
 
   const validateField = (attr, value) => {
     try {

@@ -8,6 +8,8 @@ import Profile from '../views/Profile.js';
 import Upload from '../views/Upload.js';
 import Single from '../views/Single.js';
 import Login from '../views/Login.js';
+import MyFiles from '../views/MyFiles.js';
+import Modify from '../views/Modify.js';
 import AuthLoading from '../views/AuthLoading.js';
 import {Icon} from 'native-base';
 
@@ -52,6 +54,12 @@ const StackNavigator = createStackNavigator(
       },
       Logout: {
         screen: Login,
+      },
+      MyFiles: {
+        screen: MyFiles,
+      },
+      Modify: {
+        screen: Modify,
       },
     },
 );

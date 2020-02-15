@@ -7,7 +7,10 @@ const Home = (props) => {
   const {navigation} = props;
   return (
     <View>
-      <List navigation={navigation}></List>
+      <List
+        navigation={navigation}
+        mode='all'>
+      </List>
     </View>
   );
 };
